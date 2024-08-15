@@ -32,7 +32,7 @@ class TV(object):
             raise ValueError("command_layout should be one of %s, not %s" % (str(self._VALID_COMMAND_MAPS), command_map))
 
         stream = pkgutil.get_data("sharp_aquos_rc", "commands/%s.yaml" %command_map)
-        self.command = yaml.load(stream)
+        self.command = yaml.safe_load(stream)
 
     def _send_command_raw(self, command, opt=''):
         """
